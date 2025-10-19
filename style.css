@@ -313,7 +313,7 @@ body{
 
 .top-container .status .items-list .item:nth-child(2) .progress .bar{
 
-    width: 65%;
+    width: 80%;
 
 }
 
@@ -321,7 +321,7 @@ body{
 
 .top-container .status .items-list .item:nth-child(2) .progress::before{
 
-    content: "65%";
+    content: "80%";
 
 }
 
