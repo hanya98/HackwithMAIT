@@ -1,342 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="style.css">
-    <title>Volunteer-Hub</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>INCLUSIPHERE</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-
-    <div class="top-container">
-
-        <div class="nav">
-            <div class="logo">
-                <i class='bx bxl-codepen'></i>
-                <a href="#">Inclusiphere</a>
-            </div>
-
-            <div class="nav-links">
-                <a href="#">Dashboard</a>
-                <a href="#">Community</a>
-                <a href="#">Shifts</a>
-                <a href="#">Awards</a>
-                <a href="#">Profile</a>
-            </div>
-
-            <div class="right-section">
-                <i class='bx bx-bell'></i>
-                <i class='bx bx-search'></i>
-
-                <div class="profile">
-                    <div class="info">
-                        <img src="images/profile.jpg" alt="Profile">
-                        <div>
-                            <a href="#">Anna Huang</a>
-                            <p>Volunteer</p>
-                        </div>
-                    </div>
-                    <i class='bx bx-chevron-down'></i>
-                </div>
-            </div>
-
+  <div class="main-layout-container">
+    <div class="left-content">
+        <h1>Bridging Generations, Ending Loneliness.</h1>
+        <p>
+            A simple way for compassionate volunteers to connect and build lasting, meaningful friendships.
+        </p>
+    </div>
+    <div class="login-card-container"> 
         </div>
 
-        <div class="status">
-            <div class="header">
-                <h4 id="big">Your Impact</h4>
-                <h4 id="small">Weekly Log</h4>
-            </div>
+    
+</div>
+<div id="main-hero-section">
+    </div> 
 
-            <div class="items-list">
-                <div class="item">
-                    <div class="info">
-                        <div>
-                            <h5>Total Volunteer Hours</h5>
-                            <p>- 42 hours completed</p>
-                            <p>- 8 hours remaining</p>
-                        </div>
-                        <i class='bx bx-time'></i>
-                    </div>
-                    <div class="progress">
-                        <div class="bar"></div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="info">
-                        <div>
-                            <h5>Projects Completed</h5>
-                            <p>- 8 completed</p>
-                            <p>- 2 pending</p>
-                        </div>
-                        <i class='bx bx-briefcase-alt'></i>
-                    </div>
-                    <div class="progress">
-                        <div class="bar"></div>
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="info">
-                        <div>
-                            <h5>Current Badges</h5>
-                            <p>- Community Builder</p>
-                            <p>- Bronze Tier</p>
-                        </div>
-                        <i class='bx bx-award'></i>
-                    </div>
-                    <div class="progress">
-                        <div class="bar"></div>
-                    </div>
-                </div>
-                <div class="item">
-                    <canvas class="activity-chart"></canvas>
-                </div>
-            </div>
+  <div class="container">
+    <h1 class="title">INCLUSIPHERE</h1>
+    <p class="subtitle"></p>
 
-        </div>
+    <img src="logo.png" alt="Elderly" class="hero-img">
 
+    <div class="role-buttons">
+      <button id="MemberBtn" class="role active">Member Login</button>
+      <button id="VolunteerBtn" class="role active">Volunteer Login</button>
     </div>
 
----
+    <form class="login-form">
+      <label>Email or Mobile</label>
+      <input type="text" placeholder="Enter your email or mobile">
 
-    <div class="bottom-container">
+      <label>Password</label>
+      <input type="password" placeholder="Enter your password">
 
-        <div class="prog-status">
-            <div class="header">
-                <h4>Volunteer Credentials</h4>
-            </div>
+      <div class="links">
+        <a href="#" class="forgot">Forgot Password?</a>
+      </div>
 
-            <div class="details">
-                <div class="item">
-                    <h2>Certificates</h2>
-                    <p>3 Certificates Earned</p>
-                </div>
-                <div class="separator"></div>
-                <div class="item">
-                    <h2>LORs</h2>
-                    <p>2 Letters of Recommendation</p>
-                </div>
-            </div>
+      <button type="submit" class="login-btn">Login</button>
+    </form>
 
-            <div class="certificates">
-                <div class="card">
-                    <h5>Community Outreach Excellence</h5>
-                    <p>Issued: March 2025</p>
-                    <button>View Certificate</button>
-                </div>
-                <div class="card">
-                    <h5>Leadership in Inclusion</h5>
-                    <p>Issued: June 2025</p>
-                    <button>View Certificate</button>
-                </div>
-            </div>
+    <p class="signup">
+      Don’t have an account? <a href="#" class="signup-link">Sign Up</a>
+    </p>
 
-            <div class="lors">
-                <h4>Letters of Recommendation</h4>
-                <ul>
-                    <li>
-                        <strong>Prof. Ritu Rani</strong> — Head of Volunteer Coordination
-                        <button>View LOR</button>
-                    </li>
-                    <li>
-                        <strong>Dr. Arunima Jaiswal</strong> — Social Impact Department
-                        <button>View LOR</button>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="meeting-schedule">
-                <h4>Personal Meeting Schedule</h4>
-                <table>
-                    <tr>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Member Name</th>
-                        <th>Location</th>
-                    </tr>
-                    <tr>
-                        <td>Oct 20</td>
-                        <td>10:00 AM</td>
-                        <td>Ravi Kumar (Visually Impaired)</td>
-                        <td>Community Hall, Zone A</td>
-                    </tr>
-                    <tr>
-                        <td>Oct 22</td>
-                        <td>3:00 PM</td>
-                        <td>Meena Sharma (Hearing Impaired)</td>
-                        <td>Care Centre, Zone C</td>
-                    </tr>
-                    <tr>
-                        <td>Oct 25</td>
-                        <td>11:00 AM</td>
-                        <td>Ajay Patel (Mobility Aid)</td>
-                        <td>Garden Pavilion</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
+    
+  </div>
+  <div id="main-hero-section">
+    </div> 
 
 
-        <div class="popular">
-            <div class="header">
-                <h4>Popular Resources</h4>
-                <a href="#"># Training</a>
-            </div>
+  <script>
+    const userBtn = document.getElementById("userBtn");
+    const volunteerBtn = document.getElementById("volunteerBtn");
 
-            <img src="images/volunteer.jpg">
-            <div class="audio">
-                <i class='bx bx-podcast'></i>
-                <a href="#">Podcast: Mastering Volunteer Coordination</a>
-            </div>
-            <p>Learn to create compelling volunteer schedules and manage teams.</p>
-            <div class="listen">
-                <div class="author">
-                    <img src="images/profile.jpg">
-                    <div>
-                        <a href="#">Alex</a>
-                        <p>Coordination Lead</p>
-                    </div>
-                </div>
-                <button>Listen<i class='bx bx-right-arrow-alt'></i></button>
-            </div>
-            <img src="images/sign.jpg">
-            <div class="audio">
-                <i class='bx bx-podcast'></i>
-                <a href="#">Hands that talk: Learn sign Language Online</a>
-            </div>
-            <p>Step-by-step lessons to help you sign confidently and communicate clearly.</p>
-            <div class="listen">
-                <div class="author">
-                    <img src="images/profile.jpg">
-                    <div>
-                        <a href="#">Sasha</a>
-                        <p>Sign Language Interpreter</p>
-                    </div>
-                </div>
-                <button>Listen<i class='bx bx-right-arrow-alt'></i></button>
-            </div>
+    userBtn.addEventListener("click", () => {
+      userBtn.classList.add("active");
+      volunteerBtn.classList.remove("active");
+      document.querySelector(".title").textContent = "HelloCare - User";
+    });
 
-        </div>
-
-
-        <div class="upcoming">
-
-            <div class="header">
-                <h4>PwD Problems</h4>
-                <a href="#">October <i class='bx bx-chevron-down'></i></a>
-            </div>
-
-            <div class="dates">
-                <div class="item">
-                    <h5>Mo</h5>
-                    <a href="#">20</a>
-                </div>
-                <div class="item active">
-                    <h5>Tu</h5>
-                    <a href="#">22</a>
-                </div>
-                <div class="item">
-                    <h5>We</h5>
-                    <a href="#">23</a>
-                </div>
-                <div class="item">
-                    <h5>Th</h5>
-                    <a href="#">24</a>
-                </div>
-                <div class="item">
-                    <h5>Fr</h5>
-                    <a href="#">25</a>
-                </div>
-            </div>
-
-            <div class="events">
-                <div class="item">
-                    <div>
-                        <i class='bx bx-help-circle'></i>
-                        <div class="event-info">
-                            <a href="#">Need help crossing park</a>
-                            <p>Volunteer: Ravi Kumar | 10:00-10:30</p>
-                            <p>Credits Awarded: 5</p>
-                        </div>
-                    </div>
-                    <i class='bx bx-dots-horizontal-rounded'></i>
-                </div>
-                <div class="item">
-                    <div>
-                        <i class='bx bx-help-circle'></i>
-                        <div class="event-info">
-                            <a href="#">Grocery assistance required</a>
-                            <p>Volunteer: Meena Sharma | 11:00-12:00</p>
-                            <p>Credits Awarded: 8</p>
-                        </div>
-                    </div>
-                    <i class='bx bx-dots-horizontal-rounded'></i>
-                </div>
-                <div class="item">
-                    <div>
-                        <i class='bx bx-help-circle'></i>
-                        <div class="event-info">
-                            <a href="#">Companion for hospital visit</a>
-                            <p>Volunteer: Ajay Patel | 14:00-15:30</p>
-                            <p>Credits Awarded: 10</p>
-                        </div>
-                    </div>
-                    <i class='bx bx-dots-horizontal-rounded'></i>
-                </div>
-                <div class="item">
-                    <div>
-                        <i class='bx bx-help-circle'></i>
-                        <div class="event-info">
-                            <a href="#">Community garden support</a>
-                            <p>Volunteer: Priya Singh | 16:00-17:00</p>
-                            <p>Credits Awarded: 7</p>
-                        </div>
-                    </div>
-                    <i class='bx bx-dots-horizontal-rounded'></i>
-                </div>
-            </div>
-
-        </div>
-
-            <!-- Community Forum Section -->
-            <section id="community-forum" class="py-5 bg-light">
-            <div class="container">
-                <h2 class="text-center mb-4">Chats</h2>
-                <div class="chat-container">
-            <div class="message pwd">
-                Hi, I need help crossing the park safely.
-                <span class="time">10:02 AM</span>
-            </div>
-            <div class="message volunteer">
-                Sure! I’m nearby and will guide you in 5 mins.
-                <span class="time">10:03 AM</span>
-            </div>
-            <div class="message pwd">
-                Thank you so much! Also, can you help with groceries later?
-                <span class="time">10:05 AM</span>
-            </div>
-            <div class="message volunteer">
-                Absolutely! We’ll coordinate the timing.
-                <span class="time">10:06 AM</span>
-            </div>
-        </div>
-
-            </div>
-</section>
-
-        </div>
-
-    </div>
-
-
-
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="script.js"></script>
-
+    volunteerBtn.addEventListener("click", () => {
+      volunteerBtn.classList.add("active");
+      userBtn.classList.remove("active");
+      document.querySelector(".title").textContent = "HelloCare - Volunteer";
+    });
+  </script>
+ 
 </body>
-
 </html>
-
