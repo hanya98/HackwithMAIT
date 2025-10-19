@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <title>Volunteer-Hub</title>
+</head>
+
+<body>
+
+    <div class="top-container">
+
+        <div class="nav">
+            <div class="logo">
+                <i class='bx bxl-codepen'></i>
+                <a href="#">Volunteer-Hub</a>
+            </div>
+
+            <div class="nav-links">
+                <a href="#">Dashboard</a>
+                <a href="#">Community</a>
+                <a href="#">Shifts</a>
+                <a href="#">Awards</a>
+                <a href="#">Profile</a>
+            </div>
+
+            <div class="right-section">
+                <i class='bx bx-bell'></i>
+                <i class='bx bx-search'></i>
+
+                <div class="profile">
+                    <div class="info">
+                        <img src="assets/profile.png">
+                        <div>
+                            <a href="#">Anna Huang</a>
+                            <p>Volunteer</p>
+                        </div>
+                    </div>
+                    <i class='bx bx-chevron-down'></i>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="status">
+            <div class="header">
+                <h4 id="big">Your Impact</h4>
+                <h4 id="small">Weekly Log</h4>
+            </div>
+
+            <div class="items-list">
+                <div class="item">
+                    <div class="info">
+                        <div>
+                            <h5>Total Volunteer Hours</h5>
+                            <p>- 42 hours completed</p>
+                            <p>- 8 hours remaining</p>
+                        </div>
+                        <i class='bx bx-time'></i>
+                    </div>
+                    <div class="progress">
+                        <div class="bar"></div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="info">
+                        <div>
+                            <h5>Projects Completed</h5>
+                            <p>- 8 completed</p>
+                            <p>- 2 pending</p>
+                        </div>
+                        <i class='bx bx-briefcase-alt'></i>
+                    </div>
+                    <div class="progress">
+                        <div class="bar"></div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="info">
+                        <div>
+                            <h5>Current Badges</h5>
+                            <p>- Community Builder</p>
+                            <p>- Bronze Tier</p>
+                        </div>
+                        <i class='bx bx-award'></i>
+                    </div>
+                    <div class="progress">
+                        <div class="bar"></div>
+                    </div>
+                </div>
+                <div class="item">
+                    <canvas class="activity-chart"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+---
+
+    <div class="bottom-container">
+
+        <div class="prog-status">
+            <div class="header">
+                <h4>Impact Metrics</h4>
+                <div class="tabs">
+                    <a href="#" class="active">1Y</a>
+                    <a href="#">6M</a>
+                    <a href="#">3M</a>
+                </div>
+            </div>
+
+            <div class="details">
+                <div class="item">
+                    <h2>3.45k</h2>
+                    <p>People Reached</p>
+                </div>
+                <div class="separator"></div>
+                <div class="item">
+                    <h2>4.78k</h2>
+                    <p>Total Donations</p>
+                </div>
+            </div>
+
+            <canvas class="prog-chart"></canvas>
+
+        </div>
+
+        <div class="popular">
+            <div class="header">
+                <h4>Popular Resources</h4>
+                <a href="#"># Training</a>
+            </div>
+
+            <img src="images/volunteer.jpg">
+            <div class="audio">
+                <i class='bx bx-podcast'></i>
+                <a href="#">Podcast: Mastering Volunteer Coordination</a>
+            </div>
+            <p>Learn to create compelling volunteer schedules and manage teams.</p>
+            <div class="listen">
+                <div class="author">
+                    <img src="images/profile.jpg">
+                    <div>
+                        <a href="#">Alex</a>
+                        <p>Coordination Lead</p>
+                    </div>
+                </div>
+                <button>Listen<i class='bx bx-right-arrow-alt'></i></button>
+            </div>
+
+        </div>
+
+
+        <div class="upcoming">
+
+            <div class="header">
+                <h4>Upcoming Shifts</h4>
+                <a href="#">July <i class='bx bx-chevron-down'></i></a>
+            </div>
+
+            <div class="dates">
+                <div class="item">
+                    <h5>Mo</h5>
+                    <a href="#">12</a>
+                </div>
+                <div class="item active">
+                    <h5>Tu</h5>
+                    <a href="#">13</a>
+                </div>
+                <div class="item">
+                    <h5>We</h5>
+                    <a href="#">14</a>
+                </div>
+                <div class="item">
+                    <h5>Th</h5>
+                    <a href="#">15</a>
+                </div>
+                <div class="item">
+                    <h5>Fr</h5>
+                    <a href="#">16</a>
+                </div>
+                <div class="item">
+                    <h5>Sa</h5>
+                    <a href="#">17</a>
+                </div>
+                <div class="item">
+                    <h5>Su</h5>
+                    <a href="#">18</a>
+                </div>
+            </div>
+
+            <div class="events">
+                <div class="item">
+                    <div>
+                        <i class='bx bx-time'></i>
+                        <div class="event-info">
+                            <a href="#">Park Cleanup</a>
+                            <p>10:00-11:30</p>
+                        </div>
+                    </div>
+                    <i class='bx bx-dots-horizontal-rounded'></i>
+                </div>
+                <div class="item">
+                    <div>
+                        <i class='bx bx-time'></i>
+                        <div class="event-info">
+                            <a href="#">Food Bank Sorting</a>
+                            <p>13:30-15:00</p>
+                        </div>
+                    </div>
+                    <i class='bx bx-dots-horizontal-rounded'></i>
+                </div>
+                <div class="item">
+                    <div>
+                        <i class='bx bx-time'></i>
+                        <div class="event-info">
+                            <a href="#">Elderly Companion Visit</a>
+                            <p>11:30-13:00</p>
+                        </div>
+                    </div>
+                    <i class='bx bx-dots-horizontal-rounded'></i>
+                </div>
+                <div class="item">
+                    <div>
+                        <i class='bx bx-time'></i>
+                        <div class="event-info">
+                            <a href="#">Community Garden Day</a>
+                            <p>10:00-11:30</p>
+                        </div>
+                    </div>
+                    <i class='bx bx-dots-horizontal-rounded'></i>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
+
