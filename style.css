@@ -669,296 +669,152 @@ body{
 
 }
 
-
-
 .bottom-container .popular .listen button{
-
     border: none;
-
     color: #fff;
-
     background: #031224;
-
     padding: 6px 14px;
-
     border-radius: 10px;
-
     display: flex;
-
     align-items: center;
-
     gap: 6px;
-
     cursor: pointer;
-
 }
-
 
 
 .bottom-container .popular .listen button i{
-
     font-size: 16px;
-
 }
-
-
 
 .bottom-container .upcoming{
-
     width: 25%;
-
 }
 
-
-
 .bottom-container .upcoming .dates{
-
     display: flex;
-
     justify-content: space-between;
-
     margin-bottom: 40px;
-
 }
 
 
 
 .bottom-container .upcoming .dates .item{
-
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
-
     gap: 6px;
-
 }
-
-
 
 .bottom-container .upcoming .dates .item h5{
-
     font-weight: 600;
-
 }
-
-
 
 .bottom-container .upcoming .dates .item a{
-
     color: #000;
-
     font-size: 13px;
-
     padding: 5px 9px;
-
     border-radius: 50%;
-
     font-weight: 600;
-
     transition: all 0.3s ease;
-
 }
-
-
 
 .bottom-container .upcoming .dates .item.active a,
-
 .bottom-container .upcoming .dates .item a:hover{
-
     color: #fff;
-
     background: #031224;
-
 }
-
-
 
 .bottom-container .upcoming .events{
-
     display: flex;
-
     flex-direction: column;
-
     gap: 10px;
-
 }
-
-
 
 .bottom-container .upcoming .events .item{
-
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
-
     background: #eff6ff;
-
     padding: 10px;
-
     border-radius: 10px;
-
 }
-
-
 
 .bottom-container .upcoming .events .item > i{
-
     cursor: pointer;
-
 }
-
-
 
 .bottom-container .upcoming .events .item > div{
-
     display: flex;
-
     align-items: center;
-
     gap: 10px;
-
 }
-
-
 
 .bottom-container .upcoming .events .item > div i{
-
     font-size: 30px;
-
 }
-
-
 
 .bottom-container .upcoming .events .item .event-info a{
-
     font-size: 14px;
-
     color: #000;
-
     font-weight: 500;
-
 }
-
-
 
 .bottom-container .upcoming .events .item .event-info p{
-
     font-size: 13px;
-
     color: #9b9b9b;
-
 }
-
-
 
 @media screen and (max-width: 1300px) {
 
-   
-
     .bottom-container .popular .audio a{
-
         margin-bottom: 20px;
-
         font-size: 12px;
-
     }
-
-
 
     .bottom-container .popular > p{
-
         margin-bottom: 20px;
-
         font-size: 12px;
-
     }
-
-
 
     .bottom-container .popular .listen{
-
         flex-direction: column;
-
         gap: 10px;
-
     }
-
-
 
     .bottom-container .popular .listen .author{
-
         width: 100%;
-
     }
-
-
 
     .bottom-container .popular .listen button{
-
         width: 100%;
-
         justify-content: center;
-
     }
-
-
 
     .bottom-container .upcoming .events .item{
-
         padding: 6px 10px;
-
     }
-
-
 
     .bottom-container .upcoming .events .item > div i{
-
         font-size: 20px;
-
     }
-
-
 
     .bottom-container .upcoming .events .item .event-info a{
-
         font-size: 13px;
-
     }
-
-
 
     .bottom-container .upcoming .events .item .event-info p{
-
         font-size: 12px;
-
     }
-
-
-
 }
-
-
 
 @media screen and (max-width: 1080px) {
 
-   
-
     .top-container .nav .right-section .profile{
-
         padding: 5px;
-
     }
 
-
-
     .top-container .nav .right-section .profile .info p,
-
     .top-container .status .header h4#small{
-
         display: none;
     }
 
@@ -1026,4 +882,65 @@ body{
     .bottom-container .upcoming{
         width: 100%;
     }
+}
+
+.certificates, .lors, .meeting-schedule {
+    margin-top: 30px;
+}
+
+.certificates .card {
+    background: #eff6ff;
+    padding: 14px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+}
+
+.certificates .card h5 {
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.certificates .card button,
+.lors ul li button {
+    background: #031224;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    margin-top: 6px;
+}
+
+.lors ul {
+    list-style: none;
+    padding: 0;
+}
+
+.lors ul li {
+    background: #f3f3f3;
+    margin-bottom: 8px;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.meeting-schedule table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.meeting-schedule th, .meeting-schedule td {
+    border-bottom: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.meeting-schedule th {
+    background: #f3f3f3;
+    font-weight: 600;
 }
