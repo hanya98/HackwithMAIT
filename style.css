@@ -41,7 +41,7 @@ body, html {
   align-items: center;
   width: 85%;
   z-index: 2;
-  color: #fff;
+  color: #000000;
   gap: 3rem;
 }
 
@@ -67,7 +67,7 @@ body, html {
   padding: 2.5rem;
   width: 370px;
   backdrop-filter: blur(10px);
-  color: #fff;
+  color: #000000;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -87,7 +87,7 @@ body, html {
   width: 70px;
   border-radius: 50%;
   margin-bottom: 0.8rem;
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(4, 0, 253, 0.3);
 }
 
 .title {
@@ -108,16 +108,16 @@ body, html {
   padding: 10px 0;
   border: none;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.2);
-  color: #fff;
+  background: rgba(216, 210, 210, 0.2);
+  color: #000000;
   font-weight: 500;
   cursor: pointer;
   transition: 0.3s;
 }
 
 .role.active {
-  background: #4caf50;
-  color: #fff;
+  background: #4654ef;
+  color: #fefdfd;
 }
 
 /* ========= FORM ========= */
@@ -132,14 +132,14 @@ body, html {
   padding: 10px;
   border: none;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.25);
-  color: #fff;
+  background: rgba(190, 183, 183, 0.25);
+  color: #060505;
   margin-bottom: 15px;
   transition: background 0.3s ease;
 }
 
 .login-form input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(0, 0, 0, 0.7);
 }
 
 .login-form input:focus {
@@ -154,7 +154,7 @@ body, html {
 }
 
 .forgot {
-  color: #a2d5ac;
+  color: #5d54e1;
   text-decoration: none;
   font-size: 0.85rem;
 }
@@ -168,7 +168,7 @@ body, html {
   width: 100%;
   padding: 10px;
   border: none;
-  background: #4caf50;
+  background: #5d54e1;
   color: #fff;
   font-size: 1rem;
   border-radius: 8px;
@@ -177,7 +177,7 @@ body, html {
 }
 
 .login-btn:hover {
-  background: #45a049;
+  background: #266e8d;
 }
 
 .signup {
@@ -187,7 +187,7 @@ body, html {
 }
 
 .signup a {
-  color: #a2d5ac;
+  color: #5d54e1;
   text-decoration: none;
   font-weight: 600;
 }
