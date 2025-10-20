@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>INCLUSIPHERE</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="hero-section">
+    <div class="overlay"></div>
+
+    <div class="content">
+      <div class="left-content fade-in">
+        <h1>Bridging Generations, Ending Loneliness.</h1>
+        <p>A simple way for compassionate volunteers to connect and build lasting, meaningful friendships.</p>
+      </div>
+
+      <div class="login-card fade-up">
+        <div class="logo-area">
+          <img src="images/our_logo.jpg" alt="InclusiSphere Logo" class="logo" />
+          <h1 class="title">INCLUSIPHERE</h1>
+        </div>
+
+        <div class="role-buttons">
+          <button id="memberBtn" class="role active">Member Login</button>
+          <button id="volunteerBtn" class="role">Volunteer Login</button>
+        </div>
+
+        <form class="login-form">
+          <label for="email">Email or Mobile</label>
+          <input id="email" type="text" placeholder="Enter your email or mobile" aria-label="Email or mobile input" />
+
+          <label for="password">Password</label>
+          <input id="password" type="password" placeholder="Enter your password" aria-label="Password input" />
+
+          <div class="links">
+            <a href="#" class="forgot">Forgot Password?</a>
+          </div>
+
+          <button type="submit" class="login-btn">Login</button>
+        </form>
+
+        <p class="signup">
+          Don’t have an account? <a href="#" class="signup-link">Sign Up</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const memberBtn = document.getElementById("memberBtn");
+    const volunteerBtn = document.getElementById("volunteerBtn");
+
+    memberBtn.addEventListener("click", () => {
+      memberBtn.classList.add("active");
+      volunteerBtn.classList.remove("active");
+      document.querySelector(".title").textContent = "INCLUSIPHERE - Member";
+    });
+
+    volunteerBtn.addEventListener("click", () => {
+      volunteerBtn.classList.add("active");
+      memberBtn.classList.remove("active");
+      document.querySelector(".title").textContent = "INCLUSIPHERE - Volunteer";
+    });
+  </script>
+</body>
+</html>
