@@ -43,3 +43,8 @@ new Chart(ctx, {
         }
     }
 });
+
+window.addEventListener("load", () => {
+document.body.classList.add("loaded");
+});
+

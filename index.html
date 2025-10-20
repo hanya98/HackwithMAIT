@@ -95,5 +95,18 @@
       document.querySelector(".title").textContent = "INCLUSIPHERE - Volunteer";
     });
   </script>
+  <!-- Loader -->
+    <div id="loader">
+    <div class="spinner"></div>
+    </div>
+
+    <script>
+    // When the page fully loads, fade in and remove loader
+    window.addEventListener("load", () => {
+        document.body.classList.add("loaded");
+        setTimeout(() => document.getElementById("loader").remove(), 600);
+    });
+    </script>
+
 </body>
 </html>

@@ -276,6 +276,18 @@
             /* Adjust color for contrast */
             color: inherit;
         }
+
+        body {
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity 1s ease, transform 1s ease;
+        }
+
+        body.loaded {
+        opacity: 1;
+        transform: translateY(0);
+        }
+
     </style>
 </head>
 <body>
@@ -412,6 +424,12 @@
             </div>
         </div>
     </div>
+
+    <script>
+    window.addEventListener("load", () => {
+        document.body.classList.add("loaded");
+    });
+    </script>
 
 </body>
 </html>
