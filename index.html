@@ -4,109 +4,210 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>INCLUSIPHERE</title>
-  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+    :root {
+      --primary-color: #5b21b6;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      overflow: hidden;
+      color: white;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* -------------- BACKGROUND CAROUSEL -------------- */
+    .background-carousel {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 100%;
+      display: flex;
+      animation: scrollBg 60s linear infinite;
+      z-index: 0;
+    }
+
+    .background-carousel img {
+      width: 50%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Duplicate group for seamless loop */
+    @keyframes scrollBg {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Dark overlay to make text visible */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.55);
+      z-index: 1;
+    }
+
+    /* -------------- HERO / LOGIN CONTENT -------------- */
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 400px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .hero-content h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero-content p {
+      margin-bottom: 1.5rem;
+      line-height: 1.4;
+    }
+
+    .role-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .role {
+      flex: 1;
+      padding: 0.5rem 0;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .role.active {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    .role:not(.active) {
+      background: rgba(255,255,255,0.2);
+      color: #ddd;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.7rem;
+      margin-bottom: 1rem;
+      border: none;
+      border-radius: 6px;
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 0.8rem;
+      background: var(--primary-color);
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .login-btn:hover {
+      background: #6d28d9;
+    }
+
+    .signup {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .signup a {
+      color: #ddd;
+      text-decoration: underline;
+    }
+  </style>
 </head>
+
 <body>
-  <div class="hero-section">
-    <div class="overlay"></div>
-
-    <div class="content">
-      <div class="left-content fade-in">
-        <h1>Bridging Generations, Ending Loneliness.</h1>
-        <p>A simple way for compassionate volunteers to connect and build lasting, meaningful friendships.</p>
-      </div>
-
-      <div class="login-card fade-up">
-        <div class="logo-area">
-          <img src="images/our_logo.jpg" alt="InclusiSphere Logo" class="logo" />
-          <h1 class="title">INCLUSIPHERE</h1>
-        </div>
-
-        <div class="role-buttons">
-          <button id="memberBtn" class="role active">Member Login</button>
-          <button id="volunteerBtn" class="role">Volunteer Login</button>
-        </div>
-
-        <form class="login-form">
-          <label for="email">Email or Mobile</label>
-          <input id="email" type="text" placeholder="Enter your email or mobile" aria-label="Email or mobile input" />
-
-          <label for="password">Password</label>
-          <input id="password" type="password" placeholder="Enter your password" aria-label="Password input" />
-
-          <div class="links">
-            <a href="#" class="forgot">Forgot Password?</a>
-          </div>
-
-          <button type="submit" class="login-btn">Login</button>
-        </form>
-
-        <p class="signup">
-          Don’t have an account? <a href="#" class="signup-link">Sign Up</a>
-        </p>
-      </div>
-    </div>
+  <!-- Infinite Scrolling Background -->
+  <div class="background-carousel">
+    <img src="https://images.unsplash.com/photo-1599282271323-f4d8e3b18df1?auto=format&fit=crop&q=80&w=1000" alt="">
+    <img src="https://plus.unsplash.com/premium_photo-1681492036923-ee4ffc6bfefd?auto=format&fit=crop&q=60&w=1000" alt="">
+    <img src="https://plus.unsplash.com/premium_photo-1661539292646-7b6f9f0e6b60?auto=format&fit=crop&q=60&w=1000" alt="">
+    <img src="https://plus.unsplash.com/premium_photo-1661515287078-dd61d7354dca?auto=format&fit=crop&q=80&w=1000" alt="">
+  </div>
+  <!-- Duplicate images for smooth infinite loop -->
+  <div class="background-carousel">
+    <img src="https://images.unsplash.com/photo-1599282271323-f4d8e3b18df1?auto=format&fit=crop&q=80&w=1000" alt="">
+    <img src="https://plus.unsplash.com/premium_photo-1681492036923-ee4ffc6bfefd?auto=format&fit=crop&q=60&w=1000" alt="">
+    <img src="https://plus.unsplash.com/premium_photo-1661539292646-7b6f9f0e6b60?auto=format&fit=crop&q=60&w=1000" alt="">
+    <img src="https://plus.unsplash.com/premium_photo-1661515287078-dd61d7354dca?auto=format&fit=crop&q=80&w=1000" alt="">
   </div>
 
-  <script>
-  const memberBtn = document.getElementById("memberBtn");
-  const volunteerBtn = document.getElementById("volunteerBtn");
-  const loginForm = document.querySelector(".login-form");
+  <!-- Overlay -->
+  <div class="overlay"></div>
 
-  // Switch active role
-  memberBtn.addEventListener("click", () => {
-    memberBtn.classList.add("active");
-    volunteerBtn.classList.remove("active");
-    document.querySelector(".title").textContent = "INCLUSIPHERE - Member";
-  });
+  <!-- Hero/Login Card -->
+  <div class="hero-content">
+    <h1>Bridging Generations, Ending Loneliness.</h1>
+    <p>A simple way for compassionate volunteers to connect and build lasting, meaningful friendships.</p>
 
-  volunteerBtn.addEventListener("click", () => {
-    volunteerBtn.classList.add("active");
-    memberBtn.classList.remove("active");
-    document.querySelector(".title").textContent = "INCLUSIPHERE - Volunteer";
-  });
+    <div class="role-buttons">
+      <button id="memberBtn" class="role active">Member</button>
+      <button id="volunteerBtn" class="role">Volunteer</button>
+    </div>
 
-  // Handle form submission
-  loginForm.addEventListener("submit", (e) => {
-    e.preventDefault();
+    <form id="loginForm">
+      <input type="text" id="email" placeholder="Email or Mobile">
+      <input type="password" id="password" placeholder="Password">
+      <button type="submit" class="login-btn">Login</button>
+    </form>
 
-    if (volunteerBtn.classList.contains("active")) {
-      window.location.href = "volunteer.html";  // redirect to volunteer page
-    } else {
-      window.location.href = "member.html";      // redirect to member page
-    }
-  });
-</script>
-
+    <p class="signup">Don’t have an account? <a href="#">Sign Up</a></p>
+  </div>
 
   <script>
     const memberBtn = document.getElementById("memberBtn");
     const volunteerBtn = document.getElementById("volunteerBtn");
+    const loginForm = document.getElementById("loginForm");
 
     memberBtn.addEventListener("click", () => {
       memberBtn.classList.add("active");
       volunteerBtn.classList.remove("active");
-      document.querySelector(".title").textContent = "INCLUSIPHERE - Member";
     });
 
     volunteerBtn.addEventListener("click", () => {
       volunteerBtn.classList.add("active");
       memberBtn.classList.remove("active");
-      document.querySelector(".title").textContent = "INCLUSIPHERE - Volunteer";
+    });
+
+    loginForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (volunteerBtn.classList.contains("active")) {
+        window.location.href = "volunteer.html";
+      } else {
+        window.location.href = "member.html";
+      }
     });
   </script>
-  <!-- Loader -->
-    <div id="loader">
-    <div class="spinner"></div>
-    </div>
-
-    <script>
-    // When the page fully loads, fade in and remove loader
-    window.addEventListener("load", () => {
-        document.body.classList.add("loaded");
-        setTimeout(() => document.getElementById("loader").remove(), 600);
-    });
-    </script>
-
 </body>
 </html>
