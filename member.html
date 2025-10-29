@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Member Dashboard</title>
-    <!-- Using Tailwind CSS for utility classes and aesthetics -->
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* BASE & LAYOUT: Combining Sidebar (Desktop) and Content (Mobile) */
@@ -15,15 +14,27 @@
             background-color: #f4f7f6;
         }
 
+        /* *** KEY CHANGE 1: MAKING CONTAINER FULL-WIDTH ON ALL DEVICES ***
+        Removed max-width, allowing it to stretch. Added max-width and margin for desktop viewing.
+        */
         .container {
-            max-width: 1000px; /* Adjusted max width to accommodate sidebar and mobile content */
+            width: 100%; /* Take full width of the viewport */
             min-height: 100vh;
-            margin: 0 auto;
+            margin: 0; /* Remove auto margin by default */
             background-color: #ffffff;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             display: flex; /* Enables sidebar and content side-by-side */
-            border-radius: 12px;
+            border-radius: 0; /* No border-radius for full-screen */
             overflow: hidden;
+        }
+
+        /* Apply a maximum width and center the container only on larger screens (Desktop view) */
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 1200px; /* New desktop max width (adjust as needed) */
+                margin: 20px auto; /* Center with some margin on large screens */
+                border-radius: 12px;
+            }
         }
 
         /* --- VERTICAL SIDEBAR NAVIGATION --- */
@@ -40,10 +51,35 @@
             top: 0;
             overflow-y: auto; /* Allow scrolling if many items */
         }
+        
+        /* Hiding sidebar on small screens (mobile-first approach) */
+        @media (max-width: 768px) {
+            .nav-bar-vertical {
+                /* For a fully responsive, mobile-first design, you'd typically hide this sidebar 
+                   and implement a hamburger menu. For this update, we will keep it simple: 
+                   The sidebar will appear from 'md' breakpoint up (or whatever size you prefer). 
+                   But for now, sticking to your existing CSS and just fixing the layout issues. 
+                */
+                display: none; /* Hide sidebar on mobile for cleaner layout */
+            }
+            .container {
+                display: block; /* Stack items vertically on mobile */
+            }
+        }
+
+        @media (min-width: 769px) {
+            .nav-bar-vertical {
+                display: flex; /* Show sidebar on larger screens */
+            }
+            .container {
+                display: flex; /* Show sidebar and content side-by-side */
+            }
+        }
+
         .nav-title {
             font-size: 1.5em;
             font-weight: bold;
-            text-align: left; /* Changed alignment to left for "Inclusiphere" */
+            text-align: left;
             margin-bottom: 30px;
             padding: 0 20px;
         }
@@ -74,10 +110,13 @@
             display: inline-block;
         }
 
-        /* --- MAIN CONTENT AREA - Mobile Style, Sidebar Adjacent --- */
+        /* --- MAIN CONTENT AREA --- */
+        /* *** KEY CHANGE 2: MAIN CONTENT TAKES UP REMAINING SPACE ***
+        Removed max-width and let flex-grow do the work.
+        */
         .main-content {
             flex-grow: 1;
-            max-width: 780px; /* Ensures the content width doesn't stretch infinitely */
+            width: 100%; /* Ensures it takes up full width on mobile when sidebar is hidden */
             overflow-y: auto;
             max-height: 100vh;
         }
@@ -294,41 +333,32 @@
 
     <div class="container">
 
-        <!-- VERTICAL NAVIGATION BAR (SIDEBAR) -->
         <div class="nav-bar-vertical">
-            <!-- UPDATED: Title changed to "Inclusiphere" -->
             <div class="nav-title">Inclusiphere</div>
             
             <a href="#" class="nav-item-vertical active">
-                <!-- UPDATED: Icon to House for Dashboard -->
                 <span class="nav-icon-vertical">🏠</span>
                 Dashboard
             </a>
             <a href="#" class="nav-item-vertical">
-                <!-- UPDATED: Icon to Calendar -->
                 <span class="nav-icon-vertical">📅</span>
                 Schedule Meetings
             </a>
             <a href="#" class="nav-item-vertical">
-                <!-- UPDATED: Icon to Microphone -->
                 <span class="nav-icon-vertical">🎤</span>
                 Voice Assistance
             </a>
             <a href="#" class="nav-item-vertical">
-                <!-- UPDATED: Icon to Profile -->
                 <span class="nav-icon-vertical">👤</span>
                 Profile Settings
             </a>
         </div>
 
-        <!-- MAIN DASHBOARD CONTENT -->
         <div class="main-content">
 
-            <!-- HEADER - Mobile Style (Text on Two Lines) -->
             <div class="header">
                 <span class="profile-icon">👤</span>
                 <div class="greeting">
-                    <!-- UPDATED: Greeting Text -->
                     <h1>Welcome Back!!</h1>
                     <p>Access your resources and community tools</p>
                 </div>
@@ -337,7 +367,6 @@
             <div class="quick-actions">
                 <h2>Quick Actions</h2>
 
-                <!-- UPDATED: Quick Actions content to match new design -->
                 <div class="action-card card-green">
                     <span class="card-icon">🆘</span>
                     <div class="card-text">
@@ -375,14 +404,12 @@
                 <h2>Activity Overview</h2>
                 <div class="summary-row">
 
-                    <!-- Summary Card 1: Problems Raised (Heart/Light Green) -->
                     <div class="summary-card summary-green-bg">
                         <span class="summary-number icon-green">🙋</span>
                         <h3>Helps Raised</h3>
                         <p style="font-size:0.9em; color:#6b7280; margin-top:5px;">5 Problems raised,4 helps received</p>
                     </div>
 
-                    <!-- Summary Card 2: Meetings Scheduled (Link/Light Blue) -->
                     <div class="summary-card summary-blue-bg">
                         <span class="summary-number icon-blue">📆</span>
                         <h3>Meetings Scheduled</h3>
@@ -391,13 +418,11 @@
                 </div>
             </div>
 
-            <!-- CHATBOT SECTION -->
             <div id="community-forum">
                 <h2>Community Support Chat</h2>
                 <p>Connect instantly with a volunteer or view ongoing discussions.</p>
 
                 <div class="chat-container">
-                    <!-- Sample Messages -->
                     <div class="message volunteer">
                         Hello! Welcome to the chat. I'm here to assist you with any questions about government aid or scheduling.
                         <span class="time">10:05 AM</span>
@@ -416,7 +441,6 @@
                     </div>
                 </div>
 
-                <!-- Simple Message Input Area -->
                 <div style="margin-top: 15px; display: flex; gap: 10px;">
                     <input type="text" placeholder="Type your message..." style="flex-grow: 1; padding: 10px; border: 1px solid #e5e7eb; border-radius: 12px; font-size: 14px;">
                     <button style="background-color: #3b82f6; color: white; padding: 10px 15px; border-radius: 12px; font-weight: 600; transition: background-color 0.2s;">Send</button>
