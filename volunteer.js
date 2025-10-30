@@ -55,20 +55,29 @@ document.body.classList.add("loaded");
 // Your provided YouTube Data API Key
 const YOUTUBE_API_KEY = 'AIzaSyC8dC0zUnZ0zPu7H4iVulFwHFXHHqCwBMs';
 
-// Default search query if the user hasn't typed anything
-const DEFAULT_SEARCH_QUERY = 'volunteer training accessibility'; 
-const MAX_RESULTS = 3; 
+// CORRECTION: Broadened default search query to guarantee results
+const DEFAULT_SEARCH_QUERY = 'volunteer training'; 
+const MAX_RESULTS = 5; 
+
+// Array of random, relevant modifiers to ensure search results change
+const RANDOM_MODIFIERS = ['guide', 'tips', 'tutorial', 'workshop', 'webinar', 'latest', 'expert'];
 
 /**
  * Fetches video results from the YouTube Data API based on the provided query.
- * The 'order=date' parameter forces the results to change on every reload
- * by fetching the most recently uploaded relevant videos.
  * @param {string} query - The search term provided by the user or the default.
  */
 async function fetchRelatedVideos(query) {
-    const finalQuery = query || DEFAULT_SEARCH_QUERY;
+    let finalQuery = query; // Use the query passed from handleSearch, which might be null
     
-    // CORRECTION: Changed &order=relevance to &order=date to ensure different results on reload.
+    // LOGIC: If 'query' is null (meaning it's the initial page load), we use the randomized default.
+    if (!query) {
+        const randomIndex = Math.floor(Math.random() * RANDOM_MODIFIERS.length);
+        const randomModifier = RANDOM_MODIFIERS[randomIndex];
+        // Combine the broad default query with a random modifier
+        finalQuery = `${DEFAULT_SEARCH_QUERY} ${randomModifier}`;
+    }
+
+    // Using '&order=date' alongside the dynamic query for maximum changeability
     const API_URL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(finalQuery)}&type=video&maxResults=${MAX_RESULTS}&order=date&key=${YOUTUBE_API_KEY}`;
     
     const container = document.getElementById('dynamic-resource-list');
@@ -98,13 +107,9 @@ function handleSearch() {
     // Get the value from the search box
     const userQuery = inputElement.value.trim();
     
-    if (userQuery) {
-        // Fetch videos using the user's query
-        fetchRelatedVideos(userQuery);
-    } else {
-        // If the box is empty, use the default query
-        fetchRelatedVideos(DEFAULT_SEARCH_QUERY);
-    }
+    // When the user searches, we do NOT use the random modifier.
+    // Pass the userQuery (which might be an empty string if they click without typing)
+    fetchRelatedVideos(userQuery);
 }
 
 
@@ -119,7 +124,8 @@ function renderVideos(videos) {
     container.innerHTML = ''; 
 
     if (videos.length === 0) {
-        container.innerHTML = '<p style="text-align: center; color: #777; padding: 20px;">No related videos found for that topic. Try a different query.</p>';
+        // If no videos are found, fall back to a simple, high-traffic query for the next load
+        container.innerHTML = '<p style="text-align: center; color: #777; padding: 20px;">No specific videos found. Try a different search, or reload for general topics.</p>';
         return;
     }
 
@@ -223,10 +229,10 @@ function initializeActivityChart() {
 
 // Call functions when the page loads
 window.onload = function() {
-    // CORRECTION: This line is re-added to fetch the initial videos when the page loads.
-    fetchRelatedVideos(DEFAULT_SEARCH_QUERY); 
+    // 1. Initial load: Fetch videos automatically using the dynamic/randomized query (pass null)
+    fetchRelatedVideos(null); 
     
-    // Set up the event listener for the search button
+    // 2. Set up the event listener for the search button
     document.getElementById('resource-search-button').addEventListener('click', handleSearch);
 
     initializeActivityChart(); 
