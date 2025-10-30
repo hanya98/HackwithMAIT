@@ -53,22 +53,30 @@ document.body.classList.add("loaded");
 // =================================================================
 
 // Your provided YouTube Data API Key
-const YOUTUBE_API_KEY = 'AIzaSyC8dC0zUnZ0zPu7H4iVulFwHFXHHqCwBMs'; // <-- NEW KEY IS HERE
+const YOUTUBE_API_KEY = 'AIzaSyC8dC0zUnZ0zPu7H4iVulFwHFXHHqCwBMs';
 
-// The search query is designed to find highly relevant training content
-const AI_SEARCH_QUERY = 'inclusive volunteer training and accessibility best practices';
-const MAX_RESULTS = 3; // Number of related videos to display
+// Default search query if the user hasn't typed anything
+const DEFAULT_SEARCH_QUERY = 'volunteer training accessibility'; 
+const MAX_RESULTS = 3; 
 
 /**
- * Fetches video results from the YouTube Data API.
+ * Fetches video results from the YouTube Data API based on the provided query.
+ * The 'order=date' parameter forces the results to change on every reload
+ * by fetching the most recently uploaded relevant videos.
+ * @param {string} query - The search term provided by the user or the default.
  */
-async function fetchRelatedVideos() {
-    const API_URL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(AI_SEARCH_QUERY)}&type=video&maxResults=${MAX_RESULTS}&key=${YOUTUBE_API_KEY}`;
+async function fetchRelatedVideos(query) {
+    const finalQuery = query || DEFAULT_SEARCH_QUERY;
+    
+    // CORRECTION: Changed &order=relevance to &order=date to ensure different results on reload.
+    const API_URL = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(finalQuery)}&type=video&maxResults=${MAX_RESULTS}&order=date&key=${YOUTUBE_API_KEY}`;
+    
+    const container = document.getElementById('dynamic-resource-list');
+    container.innerHTML = '<p style="text-align: center; color: #3498db; padding: 20px;">Searching for resources...</p>';
     
     try {
         const response = await fetch(API_URL);
         if (!response.ok) {
-            // Check for common API errors (e.g., key restrictions, daily limit)
             const errorData = await response.json();
             console.error("YouTube API Failure Details:", errorData);
             throw new Error(`YouTube API error: ${response.status} - ${errorData.error.message || response.statusText}`);
@@ -76,23 +84,42 @@ async function fetchRelatedVideos() {
         const data = await response.json();
         renderVideos(data.items);
     } catch (error) {
-        console.error("❌ Failed to fetch YouTube videos. Please check the Console for details. The key might be invalid or improperly restricted.", error);
-        document.getElementById('dynamic-resource-list').innerHTML = 
-            '<p style="color: red; text-align: center; padding: 20px;">⚠️ **Error loading resources.** Check the console for API key or restriction issues.</p>';
+        console.error("❌ Failed to fetch YouTube videos.", error);
+        container.innerHTML = 
+            '<p style="color: red; text-align: center; padding: 20px;">⚠️ **Error loading resources.** Please check the console or try a simpler search term.</p>';
     }
 }
 
-// ... (rest of the renderVideos and initializeActivityChart functions remain the same)
-// ... (Make sure the full, unmodified code from the previous working response is here)
+/**
+ * Event listener function to handle the search button click.
+ */
+function handleSearch() {
+    const inputElement = document.getElementById('resource-search-input');
+    // Get the value from the search box
+    const userQuery = inputElement.value.trim();
+    
+    if (userQuery) {
+        // Fetch videos using the user's query
+        fetchRelatedVideos(userQuery);
+    } else {
+        // If the box is empty, use the default query
+        fetchRelatedVideos(DEFAULT_SEARCH_QUERY);
+    }
+}
 
+
+/**
+ * Renders the fetched video results into the dashboard container.
+ * @param {Array} videos - The list of video items from the API.
+ */
 function renderVideos(videos) {
     const container = document.getElementById('dynamic-resource-list');
     if (!container) return;
     
-    container.innerHTML = ''; // Clear the "Loading" message
+    container.innerHTML = ''; 
 
     if (videos.length === 0) {
-        container.innerHTML = '<p style="text-align: center; color: #777; padding: 20px;">No related training videos found for the current query.</p>';
+        container.innerHTML = '<p style="text-align: center; color: #777; padding: 20px;">No related videos found for that topic. Try a different query.</p>';
         return;
     }
 
@@ -135,6 +162,10 @@ function renderVideos(videos) {
         container.insertAdjacentHTML('beforeend', resourceHTML);
     });
 }
+
+// =================================================================
+// 📊 CHART.JS IMPLEMENTATION (This remains the same)
+// =================================================================
 
 function initializeActivityChart() {
     const ctx = document.querySelector('.activity-chart');
@@ -192,6 +223,11 @@ function initializeActivityChart() {
 
 // Call functions when the page loads
 window.onload = function() {
-    fetchRelatedVideos();
+    // CORRECTION: This line is re-added to fetch the initial videos when the page loads.
+    fetchRelatedVideos(DEFAULT_SEARCH_QUERY); 
+    
+    // Set up the event listener for the search button
+    document.getElementById('resource-search-button').addEventListener('click', handleSearch);
+
     initializeActivityChart(); 
 };
