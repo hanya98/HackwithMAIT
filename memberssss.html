@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Member Dashboard - Gemini Voice Integrated (Offline Mock)</title>
+    <title>Member Dashboard </title>
     <style>
         /* BASE & LAYOUT: Combining Sidebar (Desktop) and Content (Mobile) */
         body {
@@ -585,27 +585,32 @@
 
                 // --- SCHEMES LOGIC ---
                 else if (normalizedQuery.includes("scheme") || normalizedQuery.includes("aid")) {
-                    
-                    if (normalizedQuery.includes("maharashtra")) {
-                        replyText = "For Maharashtra, key schemes include the Sanjay Gandhi Niradhar Anudan Yojana and the Scholarship Scheme for students. You can find official links on the state Divyang Kalyan Department website.";
-                    } else if (normalizedQuery.includes("karnataka") || normalizedQuery.includes("karnatka")) {
-                        replyText = "For Karnataka, look into the Manasvini Scheme (financial support) and programs by the Department for the Empowerment of Differently Abled and Senior Citizens. We can provide direct application links.";
-                    } else if (normalizedQuery.includes("delhi") || normalizedQuery.includes("ncr")) {
-                        replyText = "In Delhi, the flagship scheme is the Disability Pension Scheme, and various transport subsidies are available. I recommend checking the Department of Social Welfare portal for forms.";
-                    } else if (normalizedQuery.includes("andhra pradesh") || normalizedQuery.includes("ap")) {
-                         replyText = "For Andhra Pradesh, the major program is the YSR PENSION KANUKA (SADAREM) for financial aid. Please visit the AP Social Security Pensions website for details.";
-                    } else {
-                        // Default response if no specific state is mentioned
-                        replyText = "Since you haven't specified a state, here are the major Central Government Schemes: UDID Card (mandatory ID), Accessible India Campaign, and the National Fellowship for PwDs. Please mention your state for tailored local resources.";
-                    }
+                    
+                    if (normalizedQuery.includes("maharashtra")) {
+                        replyText = "For Maharashtra, key schemes include the Sanjay Gandhi Niradhar Anudan Yojana and the Scholarship Scheme for students. You can find official links on the state Divyang Kalyan Department website.";
+                    } else if (normalizedQuery.includes("karnataka") || normalizedQuery.includes("karnatka")) {
+                        replyText = "For Karnataka look into the Manasvini Scheme (financial support) and programs by the Department for the Empowerment of Differently Abled and Senior Citizens. We can provide direct application links.";
+                    } else if (normalizedQuery.includes("delhi") || normalizedQuery.includes("ncr")) {
+                        replyText = "In Delhi, the flagship scheme is the Disability Pension Scheme, and various transport subsidies are available. I recommend checking the Department of Social Welfare portal for forms.";
+                    } else if (normalizedQuery.includes("andhra pradesh") || normalizedQuery.includes("ap")) {
+                         replyText = "For Andhra Pradesh, the major program is the YSR PENSION KANUKA (SADAREM) for financial aid. Please visit the AP Social Security Pensions website for details.";
+                    } else if (normalizedQuery.includes("telangana") || normalizedQuery.includes("ts")) { // New entry for Telangana
+                        replyText = "For Telangana, key programs include the Aasara Pension for financial assistance and the Economic Rehabilitation Scheme for livelihood support. You can check the Women Development & Child Welfare Department website for details.";
+                    } else {
+                        // Default response if no specific state is mentioned
+                        replyText = "Since there are no specific schemes raised by the state, here are the major Central Government Schemes: UDID Card (mandatory ID), Accessible India Campaign, and the National Fellowship for PwDs.";
+                    }
 
-                // --- SCHEDULING LOGIC ---
+               // --- C ---
+                } else if (normalizedQuery.includes("hey") || normalizedQuery.includes("hello")|| normalizedQuery.includes("hi")) {
+                    replyText = "Greetings,how may I assist you?"
+// --- SCHEDULING LOGIC ---
                 } else if (normalizedQuery.includes("schedule") || normalizedQuery.includes("meeting") || normalizedQuery.includes("call")) {
                     replyText = "Your meeting is scheduled! You will receive a confirmation email with the time, date, and video conferencing link shortly. Is there anything else I can prepare for this meeting?";
 
                 // --- COMMUNITY/GENERAL LOGIC ---
-                } else if (normalizedQuery.includes("community") || normalizedQuery.includes("forum") || normalizedQuery.includes("connect")) {
-                    replyText = "The Inclusiphere Community Forum is an excellent resource for sharing experiences. You can find links to local support groups and mental health resources on the main Dashboard. Do you need a direct link to a specific resource?";
+                } else if (normalizedQuery.includes("community") || normalizedQuery.includes("forum") || normalizedQuery.includes("connect")|| normalizedQuery.includes("share")|| normalizedQuery.includes("tell")|| normalizedQuery.includes("story")) {
+                    replyText = "The Inclusiphere Community Forum is an excellent resource for sharing experiences. You can add your content on the main Dashboard to share it with everyone!! Do you need a direct link to a specific resource?";
                 } else if (normalizedQuery.includes("thank") || normalizedQuery.includes("thanks")) {
                     replyText = "You're very welcome! Is there anything else I can assist you with today?";
                 }
