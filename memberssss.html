@@ -16,7 +16,7 @@
         /* *** KEY CHANGE 1: MAKING CONTAINER FULL-WIDTH ON ALL DEVICES *** */
         .container {
             width: 100%;
-            min-height: 100vh;
+            /* min-height: 100vh; <-- Removed to allow scroll past viewport height */
             margin: 0;
             background-color: #ffffff;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -43,10 +43,11 @@
             padding-top: 30px;
             background-color: #1e3a8a;
             color: #ffffff;
-            height: 100vh;
-            position: sticky;
-            top: 0;
-            overflow-y: auto;
+            /* CHANGES APPLIED HERE: Removing fixed height/positioning */
+            /* height: 100vh; <-- REMOVED */
+            /* position: sticky; <-- REMOVED */
+            /* top: 0; <-- REMOVED */
+            /* overflow-y: auto; <-- REMOVED */
         }
         
         /* Mobile Sidebar Handling (Hidden by default) */
@@ -107,8 +108,9 @@
         .main-content {
             flex-grow: 1;
             width: 100%;
-            overflow-y: auto;
-            max-height: 100vh;
+            /* CHANGES APPLIED HERE: Removing fixed height/scrolling */
+            /* overflow-y: auto; <-- REMOVED */
+            /* max-height: 100vh; <-- REMOVED */
         }
 
 
@@ -393,19 +395,19 @@
         <div class="nav-bar-vertical">
             <div class="nav-title">Inclusiphere</div>
             
-            <a href="#" class="nav-item-vertical active">
+            <a href="#" class="nav-item-vertical active" id="dashboard-link">
                 <span class="nav-icon-vertical">🏠</span>
                 Dashboard
             </a>
-            <a href="#" class="nav-item-vertical">
+            <a href="#" class="nav-item-vertical" id="schedule-meetings-link">
                 <span class="nav-icon-vertical">📅</span>
                 Schedule Meetings
             </a>
-            <a href="#" class="nav-item-vertical">
+            <a href="#" class="nav-item-vertical" id="voice-assistance-link">
                 <span class="nav-icon-vertical">🎤</span>
                 Voice Assistance
             </a>
-            <a href="#" class="nav-item-vertical">
+            <a href="#" class="nav-item-vertical" id="profile-settings-link">
                 <span class="nav-icon-vertical">👤</span>
                 Profile Settings
             </a>
@@ -476,8 +478,8 @@
             </div>
 
             <div id="community-forum">
-                <h2>Community Support Chat (Mock AI Integrated)</h2>
-                <p>Type, speak, or click to send a message. The Volunteer will respond and speak the reply using simulated logic.</p>
+                <h2>Community Support Chat</h2>
+                <p>Type, speak, or click to send a message.</p>
 
                 <div class="chat-container" id="chat-messages">
                     <div class="message volunteer">
@@ -519,7 +521,14 @@
             const sendButton = document.getElementById('send-button');
             const micButton = document.getElementById('mic-button');
             const chatMessages = document.getElementById('chat-messages');
+            
+            // Link Elements
+            const voiceLink = document.getElementById('voice-assistance-link');
+            const scheduleLink = document.getElementById('schedule-meetings-link'); // **CHANGE 2: Select the Schedule link**
+            const dashboardLink = document.getElementById('dashboard-link');
 
+            const communityForum = document.getElementById('community-forum');
+            
             // --- Voice Recognition Setup (Input) ---
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
             let recognition;
@@ -538,6 +547,16 @@
             
             // --- Speech Synthesis Setup (Output) ---
             const synth = window.speechSynthesis;
+
+            // Helper to remove active class from all nav items
+            const setActiveNav = (activeLink) => {
+                document.querySelectorAll('.nav-item-vertical').forEach(item => {
+                    item.classList.remove('active');
+                });
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
+            };
             
             /**
              * Function to speak a given text aloud.
@@ -549,7 +568,9 @@
                 }
 
                 if (text.trim() !== '') {
-                    const utterance = new SpeechSynthesisUtterance(text);
+                    // Strip Markdown for better speech synthesis
+                    const plainText = text.replace(/\*\*(.*?)\*\*/g, '$1'); 
+                    const utterance = new SpeechSynthesisUtterance(plainText);
                     utterance.pitch = 1.0; 
                     utterance.rate = 1.0; 
                     
@@ -576,44 +597,49 @@
                 const normalizedQuery = userQuery.toLowerCase();
                 let replyText = "I'm sorry, I don't quite understand that request yet. Can you ask about government schemes, scheduling a meeting, or community resources?";
 
-                // --- Start of Enhanced Mock API Logic ---
-
-                // --- URGENT HELP LOGIC (New) ---
-                if (normalizedQuery.includes("raise help") || normalizedQuery.includes("immediate help") || normalizedQuery.includes("emergency") || normalizedQuery.includes("urgent")) {
+                // Use a sequence of if/else if for clear, non-overlapping logic
+                
+                // 1. URGENT HELP LOGIC
+                if (normalizedQuery.includes("raise help") || normalizedQuery.includes("immediate")|| normalizedQuery.includes("help") || normalizedQuery.includes("emergency") || normalizedQuery.includes("urgent")) {
                     replyText = "🆘 **Immediate Help Alert Raised.** Your situation has been flagged as urgent. A dedicated volunteer has been notified and will contact you via your registered phone number or video call within the next 5 minutes. Please stay safe.";
                 }
 
-                // --- SCHEMES LOGIC ---
+                // 2. SCHEDULING LOGIC
+                else if (normalizedQuery.includes("already scheduled meetings")) {
+                    replyText = "Sure, I found your next scheduled meeting: **Monday at 5:00 PM** with Volunteer **Kirti Sinha**. You can reschedule or book a new one by typing 'schedule new meeting'.";
+                }
+                else if (normalizedQuery.includes("schedule") || normalizedQuery.includes("new meeting") || normalizedQuery.includes("call")) {
+                    replyText = "Your new meeting is scheduled! You will receive a confirmation email with the time, date, and video conferencing link shortly. Is there anything else I can prepare for this meeting?";
+                } 
+                
+                // 3. SCHEMES LOGIC
                 else if (normalizedQuery.includes("scheme") || normalizedQuery.includes("aid")) {
-                    
-                    if (normalizedQuery.includes("maharashtra")) {
-                        replyText = "For Maharashtra, key schemes include the Sanjay Gandhi Niradhar Anudan Yojana and the Scholarship Scheme for students. You can find official links on the state Divyang Kalyan Department website.";
-                    } else if (normalizedQuery.includes("karnataka") || normalizedQuery.includes("karnatka")) {
-                        replyText = "For Karnataka look into the Manasvini Scheme (financial support) and programs by the Department for the Empowerment of Differently Abled and Senior Citizens. We can provide direct application links.";
-                    } else if (normalizedQuery.includes("delhi") || normalizedQuery.includes("ncr")) {
-                        replyText = "In Delhi, the flagship scheme is the Disability Pension Scheme, and various transport subsidies are available. I recommend checking the Department of Social Welfare portal for forms.";
-                    } else if (normalizedQuery.includes("andhra pradesh") || normalizedQuery.includes("ap")) {
-                         replyText = "For Andhra Pradesh, the major program is the YSR PENSION KANUKA (SADAREM) for financial aid. Please visit the AP Social Security Pensions website for details.";
-                    } else if (normalizedQuery.includes("telangana") || normalizedQuery.includes("ts")) { // New entry for Telangana
-                        replyText = "For Telangana, key programs include the Aasara Pension for financial assistance and the Economic Rehabilitation Scheme for livelihood support. You can check the Women Development & Child Welfare Department website for details.";
-                    } else {
-                        // Default response if no specific state is mentioned
-                        replyText = "Since there are no specific schemes raised by the state, here are the major Central Government Schemes: UDID Card (mandatory ID), Accessible India Campaign, and the National Fellowship for PwDs.";
-                    }
-
-               // --- C ---
-                } else if (normalizedQuery.includes("hey") || normalizedQuery.includes("hello")|| normalizedQuery.includes("hi")) {
-                    replyText = "Greetings,how may I assist you?"
-// --- SCHEDULING LOGIC ---
-                } else if (normalizedQuery.includes("schedule") || normalizedQuery.includes("meeting") || normalizedQuery.includes("call")) {
-                    replyText = "Your meeting is scheduled! You will receive a confirmation email with the time, date, and video conferencing link shortly. Is there anything else I can prepare for this meeting?";
-
-                // --- COMMUNITY/GENERAL LOGIC ---
-                } else if (normalizedQuery.includes("community") || normalizedQuery.includes("forum") || normalizedQuery.includes("connect")|| normalizedQuery.includes("share")|| normalizedQuery.includes("tell")|| normalizedQuery.includes("story")) {
+                    
+                    if (normalizedQuery.includes("maharashtra")) {
+                        replyText = "For **Maharashtra**, key schemes include the Sanjay Gandhi Niradhar Anudan Yojana and the Scholarship Scheme for students. You can find official links on the state Divyang Kalyan Department website.";
+                    } else if (normalizedQuery.includes("karnataka") || normalizedQuery.includes("karnatka")) {
+                        replyText = "For **Karnataka** look into the Manasvini Scheme (financial support) and programs by the Department for the Empowerment of Differently Abled and Senior Citizens. We can provide direct application links.";
+                    } else if (normalizedQuery.includes("delhi") || normalizedQuery.includes("ncr")) {
+                        replyText = "In **Delhi**, the flagship scheme is the Disability Pension Scheme, and various transport subsidies are available. I recommend checking the Department of Social Welfare portal for forms.";
+                    } else if (normalizedQuery.includes("andhra pradesh") || normalizedQuery.includes("ap")) {
+                        replyText = "For **Andhra Pradesh**, the major program is the YSR PENSION KANUKA (SADAREM) for financial aid. Please visit the AP Social Security Pensions website for details.";
+                    } else if (normalizedQuery.includes("telangana") || normalizedQuery.includes("ts")) {
+                        replyText = "For **Telangana**, key programs include the Aasara Pension for financial assistance and the Economic Rehabilitation Scheme for livelihood support. You can check the Women Development & Child Welfare Department website for details.";
+                    } else {
+                        // Default response if no specific state is mentioned
+                        replyText = "Since there are no specific state schemes mentioned, here are the major **Central Government Schemes**: UDID Card (mandatory ID), Accessible India Campaign, and the National Fellowship for PwDs.";
+                    }
+                }
+                
+                // 4. COMMUNITY/GENERAL LOGIC
+                else if (normalizedQuery.includes("community") || normalizedQuery.includes("forum") || normalizedQuery.includes("connect")|| normalizedQuery.includes("share")|| normalizedQuery.includes("tell")|| normalizedQuery.includes("story")) {
                     replyText = "The Inclusiphere Community Forum is an excellent resource for sharing experiences. You can add your content on the main Dashboard to share it with everyone!! Do you need a direct link to a specific resource?";
                 } else if (normalizedQuery.includes("thank") || normalizedQuery.includes("thanks")) {
                     replyText = "You're very welcome! Is there anything else I can assist you with today?";
+                } else if (normalizedQuery.includes("hey") || normalizedQuery.includes("hello")|| normalizedQuery.includes("hi") || normalizedQuery.includes("greetings")) {
+                    replyText = "Greetings, how may I assist you?"
                 }
+
                 // --- End of Enhanced Mock API Logic ---
                 
                 // 1. Show the response message
@@ -636,6 +662,11 @@
                 if (messageText === '') {
                     return;
                 }
+                
+                // Cancel ongoing speech when the user sends a new message
+                if (synth.speaking) {
+                    synth.cancel();
+                }
 
                 // 1. Create the new user message element
                 const messageElement = document.createElement('div');
@@ -650,8 +681,10 @@
                 // 3. Append the new message
                 chatMessages.appendChild(messageElement);
 
-                // 4. Clear the input field
-                chatInput.value = '';
+                // 4. Clear the input field if it was manually typed
+                if (!textToSend) { 
+                    chatInput.value = '';
+                }
 
                 // 5. Scroll to the bottom
                 chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -740,6 +773,34 @@
                 if (e.key === 'Enter') {
                     sendMessage();
                 }
+            });
+            
+            // --- Navigation Link Event Listeners ---
+
+            // Voice Assistance Link Listener
+            voiceLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                setActiveNav(voiceLink);
+                communityForum.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                chatInput.value = '';
+                chatInput.focus();
+            });
+            
+            // **Schedule Meetings Link Listener**
+            scheduleLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                setActiveNav(scheduleLink); // Set this link as active
+                communityForum.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                
+                // Simulate the "already scheduled meetings" query
+                sendMessage("already scheduled meetings"); 
+                chatInput.focus();
+            });
+
+            // Dashboard Link Listener 
+            dashboardLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                setActiveNav(dashboardLink);
             });
         });
     </script>
